@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Microsoft YaHei', '微軟正黑體', Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #ffffff;
     min-height: 100vh;
     padding: 10px;
 }
@@ -32,9 +32,9 @@ header {
 
 header h1 {
     font-size: 1.2em;
-    color: #ff1493;
+    color: #000000;
     line-height: 1.2;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: none;
     font-weight: bold;
     letter-spacing: 1px;
 }
@@ -64,7 +64,7 @@ main {
 }
 
 .menu-item h2 {
-    color: #ff1493;
+    color: #000000;
     background: transparent;
     font-size: 1em;
     padding: 8px 5px;
@@ -89,14 +89,14 @@ main {
 
 footer {
     text-align: center;
-    color: white;
+    color: #000000;
     padding: 15px;
-    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid #cccccc;
     font-size: 0.9em;
 }
 
 footer p {
-    opacity: 0.8;
+    opacity: 1;
 }
 
 /* 響應式設計 */
