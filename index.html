@@ -8,35 +8,72 @@
 </head>
 <body>
     <div class="container">
-        <div class="main-content">
-            <header>
-                <h1>有貓膩咖啡茗茶小食</h1>
-            </header>
+        <header class="site-header">
+            <p class="eyebrow">DRINKS &amp; BITES</p>
+            <h1>有貓膩咖啡茗茶小食</h1>
+            <p class="subtitle">挑選喜歡的菜單，慢慢看</p>
+        </header>
 
-            <main>
-                <div class="menu-grid">
-                    <!-- 室外/外帶菜單 -->
-                    <div class="menu-item">
-                        <h2>室外/外帶菜單</h2>
-                        <div class="item-image">
-                            <img src="IMG_0261.jpeg" alt="室外/外帶菜單">
-                        </div>
-                    </div>
-
-                    <!-- 室內菜單 -->
-                    <div class="menu-item">
-                        <h2>室內菜單</h2>
-                        <div class="item-image">
-                            <img src="IMG_0017.jpeg" alt="室內菜單">
-                        </div>
-                    </div>
+        <main>
+            <section class="menu-card" aria-label="菜單照片瀏覽器">
+                <div class="menu-heading">
+                    <span class="menu-kicker">OUR MENU</span>
+                    <h2 id="menu-title">室外／外帶菜單</h2>
                 </div>
-            </main>
-        </div>
+
+                <div class="carousel" aria-roledescription="carousel">
+                    <button class="arrow-button previous" type="button" aria-label="上一張菜單" title="上一張菜單">
+                        <span aria-hidden="true">‹</span>
+                    </button>
+                    <div class="image-frame">
+                        <img id="menu-image" src="IMG_0261.jpeg" alt="室外／外帶菜單" />
+                    </div>
+                    <button class="arrow-button next" type="button" aria-label="下一張菜單" title="下一張菜單">
+                        <span aria-hidden="true">›</span>
+                    </button>
+                </div>
+
+                <div class="menu-switcher" role="group" aria-label="選擇菜單">
+                    <button class="menu-tab active" type="button" data-index="0" aria-pressed="true">室外／外帶</button>
+                    <button class="menu-tab" type="button" data-index="1" aria-pressed="false">室內菜單</button>
+                </div>
+                <p class="slide-count" aria-live="polite"><span id="current-slide">01</span><span class="count-divider">/</span><span>02</span></p>
+            </section>
+        </main>
 
         <footer>
-            <p>&copy; 2026 有貓膩咖啡茗茶小食 | 歡迎光臨</p>
+            <p>&copy; 2026 有貓膩咖啡茗茶小食 <span aria-hidden="true">·</span> 歡迎光臨</p>
         </footer>
     </div>
+
+    <script>
+        const menus = [
+            { title: '室外／外帶菜單', image: 'IMG_0261.jpeg', alt: '室外／外帶菜單' },
+            { title: '室內菜單', image: 'IMG_0017.jpeg', alt: '室內菜單' }
+        ];
+        let currentIndex = 0;
+        const image = document.getElementById('menu-image');
+        const title = document.getElementById('menu-title');
+        const currentSlide = document.getElementById('current-slide');
+        const tabs = [...document.querySelectorAll('.menu-tab')];
+
+        function showMenu(index) {
+            currentIndex = (index + menus.length) % menus.length;
+            const menu = menus[currentIndex];
+            image.src = menu.image;
+            image.alt = menu.alt;
+            title.textContent = menu.title;
+            currentSlide.textContent = String(currentIndex + 1).padStart(2, '0');
+            tabs.forEach((tab, tabIndex) => {
+                const selected = tabIndex === currentIndex;
+                tab.classList.toggle('active', selected);
+                tab.setAttribute('aria-pressed', String(selected));
+            });
+        }
+
+        document.querySelector('.previous').addEventListener('click', () => showMenu(currentIndex - 1));
+        document.querySelector('.next').addEventListener('click', () => showMenu(currentIndex + 1));
+        tabs.forEach((tab) => tab.addEventListener('click', () => showMenu(Number(tab.dataset.index))));
+    </script>
 </body>
 </html>
