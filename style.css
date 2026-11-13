@@ -6,7 +6,9 @@
 
 body {
     font-family: 'Microsoft YaHei', '微軟正黑體', Arial, sans-serif;
-    background: #ffffff;
+    background: radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.75), transparent 55%),
+                linear-gradient(135deg, #f7f1e7 0%, #eee3d2 100%);
+    background-attachment: fixed;
     min-height: 100vh;
     padding: 10px;
 }
